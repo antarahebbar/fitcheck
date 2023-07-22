@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 import dotenv from 'dotenv';
 
 const App = express();
@@ -16,6 +17,7 @@ App.use(cors());
 
 // Routes 
 App.use('/posts', postRoutes);
+App.use('/users', userRoutes);
 
 // Set up port and Mongo DB connection
 const PORT = process.env.PORT;

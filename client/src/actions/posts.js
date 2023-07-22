@@ -1,6 +1,7 @@
 import { FETCH_ALL, CREATE, DELETE, UPDATE } from '../constants/actions';
 import * as api from '../api';
 
+
 // Action Creators (functions that return actions, which have a type and paylod)
 // To make async, we use the dispatch function to return
 export const getPosts = () => async (dispatch) => {
@@ -22,10 +23,10 @@ export const getPosts = () => async (dispatch) => {
 export const createPost = (post) => async (dispatch) => {
     
     try {
-        // Make a post api req to backend server
         const { data } = await api.createPost(post);
 
-        const action = { type: CREATE, payload : data}
+        const action = { type: CREATE, payload : data};
+
         dispatch(action);
 
     } catch(error)

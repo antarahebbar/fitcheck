@@ -2,12 +2,10 @@
 import { FETCH_ALL, CREATE, DELETE, UPDATE } from "../constants/actions";
 export default (posts = [], action) => {
     switch (action.type) {
-
-        // Fetching all the data
         case FETCH_ALL: 
             return action.payload;
         case CREATE:
-            return [... posts, action.payload];
+            return [...posts, action.payload];
         case UPDATE:
             // Map over posts array, change and return
             return posts.map((post) => (post._id === action.payload._id ? action.payload : post));

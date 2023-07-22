@@ -1,6 +1,9 @@
 import PostMessage from "../models/postMessage.js";
 import express from 'express';
 import mongoose from 'mongoose';
+import auth from "../middleware/auth.js";
+
+const router = express.Router();
  
 // Retrieve post
  export const getPosts = async (req, res) => {
@@ -30,11 +33,10 @@ import mongoose from 'mongoose';
  // Create a post
  export const createPost = async(req, res) => {
     
-    // Get post from frontend
     const post = req.body;
 
     // Create new post in database
-    const newPost = new PostMessage(post);
+    const newPost = new PostMessage({ ...post, creator: req.userId, createdAt : new Date().toISOString()});
     
     // Try to save new post, send json response
     try{
@@ -86,16 +88,27 @@ import mongoose from 'mongoose';
  export const likePost = async(req, res) => {
     const { id } = req.params;
 
-     // Check if ID is valid
+    if (!req.userId) return res.json( { message : 'Unauthenticated'});
+
      if (!mongoose.Types.ObjectId.isValid(id))
      {
          res.status(404).send('No post found');
      }
 
      const post = await PostMessage.findById(id);
-     const updatedPost = await PostMessage.findByIdAndUpdate(id, {likeCount : post.likeCount + 1}, {new : true});
+
+     const index = post.likes.findIndex((id) => id === String(req.userId));
+
+     // Like post 
+     if (index === -1) { 
+        post.likes.push(req.userId);
+     } else { // Dislike
+        post.likes = post.likes.filter((id) => id !== String(req.userId));
+     }
+
+     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {new : true});
 
      res.json(updatedPost);
  }
 
-//  export default router;
+ export default router;
