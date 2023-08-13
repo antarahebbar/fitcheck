@@ -1,6 +1,6 @@
-// Define a growable file structure for the backend
 import mongoose from "mongoose";
 
+// Growable file structure for the backend for posts
 const postSchema = mongoose.Schema({
     title: String,
     message : String,

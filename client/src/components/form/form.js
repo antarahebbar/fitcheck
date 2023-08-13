@@ -10,12 +10,10 @@ import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyles();
-
-    // Loop over posts and find the one with the currentId
     const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 
 
-    // Populate value of the form if it exists, runs when post value changes from nothing to the post
+    // React-Redux for populating form value
     useEffect(() => {
         if (post) {
             setPostData(post);
@@ -30,7 +28,7 @@ const Form = ({ currentId, setCurrentId }) => {
         selectedFile : ''
     });
 
-    const dispatch = useDispatch(); // allows us to dispatch actions
+    const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const handleSubmit = (e) => {
@@ -41,7 +39,6 @@ const Form = ({ currentId, setCurrentId }) => {
         } else {
             e.preventDefault();
         
-            // Action is dispatched when we click submit
             dispatch(updatePost(currentId, {...postData, name : user?.result?.name}));
             clearForm();
         }

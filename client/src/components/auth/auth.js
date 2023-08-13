@@ -21,6 +21,7 @@ const Auth = () => {
     const history = useHistory();
 
     const handleSubmit = (e) => {
+        
         // Prevent default refreshing
         e.preventDefault();
 
@@ -34,8 +35,7 @@ const Auth = () => {
     };
 
     const handleChange = (e) => {
-
-        // Dynamic, Spread form property, only change one you are on
+        
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
     }

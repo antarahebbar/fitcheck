@@ -3,7 +3,6 @@ import * as api from '../api';
 
 
 // Action Creators (functions that return actions, which have a type and paylod)
-// To make async, we use the dispatch function to return
 export const getPosts = () => async (dispatch) => {
     
     try {

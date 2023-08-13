@@ -7,7 +7,6 @@ export default (posts = [], action) => {
         case CREATE:
             return [...posts, action.payload];
         case UPDATE:
-            // Map over posts array, change and return
             return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
         case DELETE:
             return posts.filter((post) => post._id !== action.payload);

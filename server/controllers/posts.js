@@ -5,10 +5,8 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
  
-// Retrieve post
  export const getPosts = async (req, res) => {
     
-    // Find all posts in database
     try{
         const postMessages = await PostMessage.find();
 
@@ -30,15 +28,13 @@ const router = express.Router();
     }
  }
 
- // Create a post
+
  export const createPost = async(req, res) => {
     
     const post = req.body;
 
-    // Create new post in database
     const newPost = new PostMessage({ ...post, creator: req.userId, createdAt : new Date().toISOString()});
     
-    // Try to save new post, send json response
     try{
         await newPost.save();
 
@@ -53,7 +49,6 @@ const router = express.Router();
     // Route is set to :id, id is grabbed here
     const { id : post_id } = req.params;
 
-    // Updated post sent from front end
     const post = req.body;
 
     // Check if ID is valid
@@ -61,20 +56,15 @@ const router = express.Router();
     {
         res.status(404).send('No post found');
     }
-    
-    // Update in database
 
     let updatedPost = await PostMessage.findByIdAndUpdate(post_id, post, {new : true });
 
-
-    // Send updated post
     res.json(updatedPost);
  }
 
  export const deletePost = async(req, res) => {
     const { id } = req.params;
-
-     // Check if ID is valid
+    
      if (!mongoose.Types.ObjectId.isValid(id))
      {
          res.status(404).send('No post found');

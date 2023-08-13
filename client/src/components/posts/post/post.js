@@ -35,8 +35,8 @@ const Post = ( { post, setCurrentId }) => {
             {console.log(post.selectedFile)}
             <CardMedia component = 'elementType' className = {classes.media} image = {post.selectedFile} title = {post.title} />
                 <div className = {classes.overlay}>
-                    <Typography variant = "h6">{post.name}</Typography>
-                    <Typography variant = "body2">{moment(post.createdAt).fromNow()}</Typography>
+                    <Typography variant = "p">{post.name}</Typography>
+            
                 </div>
 
                 {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (

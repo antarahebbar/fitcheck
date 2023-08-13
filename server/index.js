@@ -1,4 +1,3 @@
-// No variables in newest node, add type in package-json
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';

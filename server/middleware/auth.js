@@ -1,6 +1,6 @@
  import jwt from 'jsonwebtoken';
 
-// Template for actions - user does action in FE --> auth middleware for permission -> controller
+// User does action in FE --> auth middleware for permission -> backend controller
 
  const auth = async(req, res, next) => {
     try {
@@ -11,7 +11,6 @@
 
         let decodedData;
 
-        // Get user data
         if (token && isCustomToken) {
             decodedData = jwt.verify(token, "test");
             req.userId = decodedData?.id;

@@ -1,4 +1,3 @@
-// Define a growable file structure for the backend
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
