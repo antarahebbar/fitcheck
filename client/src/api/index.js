@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL : 'http://localhost:4000' });
+const api = axios.create({ baseURL : 'https://fitcheck-fa5fc3616e23.herokuapp.com/' });
 
 api.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')){
