@@ -17,12 +17,16 @@ App.use(cors());
 // Routes 
 App.use('/posts', postRoutes);
 App.use('/users', userRoutes);
+App.get('/', (req, res) => {
+    res.send('App succesfully running on server side.');
+})
 
 // Set up port and Mongo DB connection
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
+const CONNECTION_URL = 'mongodb+srv://antarahebbar:Juno0710@cluster0.wheixvf.mongodb.net';
 
 // Connect mongoDB, send to port if successful, otherwise log error
-mongoose.connect(process.env.CONNECTION_URL, { 
+mongoose.connect(CONNECTION_URL, { 
     useNewUrlParser : true, 
     useUnifiedTopology: true })
     .then(() => App.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
