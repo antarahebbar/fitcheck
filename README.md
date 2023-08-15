@@ -1,6 +1,6 @@
 # fitcheck
 
-Download this app to create posts with images, hashtags, and captions about fashion content. Interact with other users by liking their posts. Edit your own content by updating or deleting your posts.
+Download this app to create posts with images, hashtags, and captions about fashion content. Interact with other users by liking their posts. Edit your own content by updating or deleting your posts. Also create accounts using custom or Google accounts!
 
 ## Running fitcheck locally
 
