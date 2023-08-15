@@ -4,10 +4,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
-import dotenv from 'dotenv';
 
 const App = express();
-dotenv.config();
 
 // Express middleware
 App.use(bodyParser.json({limit : '30mb', extended: true}));
@@ -22,14 +20,15 @@ App.get('/', (req, res) => {
 })
 
 // Set up port and Mongo DB connection
-const PORT = process.env.PORT || 4000;
 const CONNECTION_URL = 'mongodb+srv://antarahebbar:Juno0710@cluster0.wheixvf.mongodb.net';
+const PORT = process.env.PORT || 4000;
+
 
 // Connect mongoDB, send to port if successful, otherwise log error
-mongoose.connect(CONNECTION_URL, { 
+mongoose.connect(CONNECTION_URL || 'mongodb+srv://antarahebbar:Juno0710@cluster0.wheixvf.mongodb.net', { 
     useNewUrlParser : true, 
     useUnifiedTopology: true })
-    .then(() => App.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
+    .then(() => App.listen(PORT, () => console.log(`Server running on dynamic port ${PORT}.`)))
     .catch((error) => console.log(`Error message: ${error.message}`));
 
 
