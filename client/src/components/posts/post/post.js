@@ -32,10 +32,9 @@ const Post = ( { post, setCurrentId }) => {
 
     return (
         <Card className = {classes.card}>
-            {console.log(post.selectedFile)}
             <CardMedia component = 'elementType' className = {classes.media} image = {post.selectedFile} title = {post.title} />
                 <div className = {classes.overlay}>
-                    <Typography variant = "p">{post.name}</Typography>
+                    <Typography variant = "h6">{post.name}</Typography>
             
                 </div>
 

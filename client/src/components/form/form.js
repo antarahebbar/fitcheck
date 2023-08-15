@@ -38,6 +38,7 @@ const Form = ({ currentId, setCurrentId }) => {
             clearForm();
         } else {
             e.preventDefault();
+            console.log('edit');
         
             dispatch(updatePost(currentId, {...postData, name : user?.result?.name}));
             clearForm();
